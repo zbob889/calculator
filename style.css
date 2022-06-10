@@ -53,6 +53,18 @@
     font-family: Orbitron;
 }
 
+.equals{
+    display: flex;
+    flex: 1 1 0;
+    border-radius: 10%;
+    justify-content: center;
+    align-items: center;
+    background-color: #f69906;
+    color: white;
+    font-size: 30px;
+    font-family: Orbitron;
+}
+
 .other{
     display: flex;
     flex: 1 1 0;

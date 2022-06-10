@@ -30,7 +30,10 @@ screen.value = 0;
 
 clearButton.addEventListener('click', function(){
     screen.value = 0;
-     total = 0;
+    total = 0;
+    operator = '';
+    currentNumber = 0;
+    previousNumber = 0;
 });
 zeroButton.addEventListener('click', () => {
     if(previousKeyType === 'sign' || Number(screen.value) === 0){
@@ -94,18 +97,45 @@ nineButton.addEventListener('click', () => {
         screen.value += 9;}
 });
 
-let total = 0;
-let operator;
-let previousNumber;
-let currentNumber;
-const calc = (operator, previousNumber, currentNumber);
 
-addButton.addEventListener('click', function(){
-    operator = 'add';
+let total = 0;
+let operator = '';
+let previousNumber;
+let currentNumber = 0;
+
+addButton.addEventListener('click', () => {
+    if(operator === '') {
     previousNumber = Number(screen.value);
+    operator = 'add';
+    }else if(previousKeyType != 'sign' && previousKeyType != 'equals' && operator != ''){
+        currentNumber = Number(screen.value);
+        operate(operator, previousNumber, currentNumber);
+    }else{
+        return;
+    };
 });
 
-equalsButton.addEventListener('click', () => (screen.value = total));
+subtractButton.addEventListener('click', () => {
+    if(operator === '') {
+    previousNumber = Number(screen.value);
+    operator = 'subtract';
+    }else if(previousKeyType != 'sign' && previousKeyType != 'equals' && operator != ''){
+        currentNumber = Number(screen.value);
+        operate(operator, previousNumber, currentNumber);
+    }else{
+        return;
+    };
+});
+
+equalsButton.addEventListener('click', () => {
+    if(previousKeyType != 'equals' && previousKeyType === 'number'){
+        currentNumber = Number(screen.value);
+        operate(operator, previousNumber, currentNumber);
+    }else {
+        return;
+    };
+    previousKeyType = 'equals';
+});
 
 function add(a, b){
     let sum = a + b;
@@ -132,7 +162,7 @@ function operate(operator, firstNumber, secondNumber){
 
     if(operator === 'add'){
         sum = add(firstNumber, secondNumber);
-    } else if(operator === 'substract'){
+    } else if(operator === 'subtract'){
         sum = subtract(firstNumber, secondNumber);
     } else if(operator === 'multiply'){
         sum = multiply(firstNumber, secondNumber);
@@ -142,5 +172,9 @@ function operate(operator, firstNumber, secondNumber){
         return 'ERROR';
     };
 
-    return sum;
+    total = sum;
+    screen.value = total;
+    previousNumber = total;
+    currentNumber = 0;
+    operator = '';
 };
