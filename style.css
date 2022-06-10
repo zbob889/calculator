@@ -11,18 +11,25 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: black;
-    padding: 24px;
+    padding: 12px 24px 24px 24px;
     border-radius: 5%;
+}
+
+#brand {
+    color: white;
+    font-size: 18px;
+    margin: 6px 0 6px 8px;
+    font-family: Orbitron;
 }
 
 #screen{
     display: flex;
     flex: 2 1 0;
-    font-size: 100px;
+    font-size: 110px;
     margin: 6px 4px 6px 4px;
     border-radius: 10%;
-    background-color: black;
-    color: white;
+    background-color: #504e1e;
+    color: black;
     text-align: right;
     height: 150px;
     min-width: 0;
