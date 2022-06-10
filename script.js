@@ -14,7 +14,19 @@ const subtractButton = document.getElementById('subtract');
 const multiplyButton = document.getElementById('multiply');
 const divideButton = document.getElementById('divide');
 const clearButton = document.getElementById('ac');
+const screen = document.getElementById('screen');
 
+clearButton.addEventListener('click', () => screen.value = '');
+zeroButton.addEventListener('click', () => screen.value += 0);
+oneButton.addEventListener('click', () => screen.value += 1);
+twoButton.addEventListener('click', () => screen.value += 2);
+threeButton.addEventListener('click', () => screen.value += 3);
+fourButton.addEventListener('click', () => screen.value += 4);
+fiveButton.addEventListener('click', () => screen.value += 5);
+sixButton.addEventListener('click', () => screen.value += 6);
+sevenButton.addEventListener('click', () => screen.value += 7);
+eightButton.addEventListener('click', () => screen.value += 8);
+nineButton.addEventListener('click', () => screen.value += 9);
 
 
 function add(a, b){
