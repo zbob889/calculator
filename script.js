@@ -16,23 +16,7 @@ const divideButton = document.getElementById('divide');
 const clearButton = document.getElementById('ac');
 const screen = document.getElementById('screen');
 
-clearButton.addEventListener('click', function(){
-    screen.value = '';
-     total = 0;
-});
-zeroButton.addEventListener('click', () => screen.value += 0);
-oneButton.addEventListener('click', () => screen.value += 1);
-twoButton.addEventListener('click', () => screen.value += 2);
-threeButton.addEventListener('click', () => screen.value += 3);
-fourButton.addEventListener('click', () => screen.value += 4);
-fiveButton.addEventListener('click', () => screen.value += 5);
-sixButton.addEventListener('click', () => screen.value += 6);
-sevenButton.addEventListener('click', () => screen.value += 7);
-eightButton.addEventListener('click', () => screen.value += 8);
-nineButton.addEventListener('click', () => screen.value += 9);
-
 let previousKeyType;
-
 const calculator = document.getElementById('calculator');
 calculator.addEventListener('click', e => {
     if(e.target.matches('.sign')){
@@ -40,6 +24,74 @@ calculator.addEventListener('click', e => {
     } else if(e.target.matches('.number')){
         previousKeyType = 'number'
     };
+});
+
+screen.value = 0;
+
+clearButton.addEventListener('click', function(){
+    screen.value = 0;
+     total = 0;
+});
+zeroButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 0;
+    } else {
+        screen.value += 0;}
+});
+oneButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 1;
+    } else if(previousKeyType = 'number' && screen.value != 0) {
+        screen.value += 1;
+    };
+});
+twoButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 2;
+    } else {
+        screen.value += 2;}
+});
+threeButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 3;
+    } else {
+        screen.value += 3;}
+});
+fourButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 4;
+    } else {
+        screen.value += 4;}
+});
+fiveButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 5;
+    } else {
+        screen.value += 5;}
+});
+sixButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 6;
+    } else {
+        screen.value += 6;}
+});
+sevenButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 7;
+    } else {
+        screen.value += 7;}
+});
+eightButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 8;
+    } else {
+        screen.value += 8;}
+});
+nineButton.addEventListener('click', () => {
+    if(previousKeyType === 'sign' || Number(screen.value) === 0){
+        screen.value = 9;
+    } else {
+        screen.value += 9;}
 });
 
 let total = 0;
@@ -51,7 +103,6 @@ const calc = (operator, previousNumber, currentNumber);
 addButton.addEventListener('click', function(){
     operator = 'add';
     previousNumber = Number(screen.value);
-    screen.value = '';
 });
 
 equalsButton.addEventListener('click', () => (screen.value = total));
