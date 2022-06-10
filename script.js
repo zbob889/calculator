@@ -16,7 +16,10 @@ const divideButton = document.getElementById('divide');
 const clearButton = document.getElementById('ac');
 const screen = document.getElementById('screen');
 
-clearButton.addEventListener('click', () => screen.value = '');
+clearButton.addEventListener('click', function(){
+    screen.value = '';
+     total = 0;
+});
 zeroButton.addEventListener('click', () => screen.value += 0);
 oneButton.addEventListener('click', () => screen.value += 1);
 twoButton.addEventListener('click', () => screen.value += 2);
@@ -28,6 +31,30 @@ sevenButton.addEventListener('click', () => screen.value += 7);
 eightButton.addEventListener('click', () => screen.value += 8);
 nineButton.addEventListener('click', () => screen.value += 9);
 
+let previousKeyType;
+
+const calculator = document.getElementById('calculator');
+calculator.addEventListener('click', e => {
+    if(e.target.matches('.sign')){
+        previousKeyType = 'sign';
+    } else if(e.target.matches('.number')){
+        previousKeyType = 'number'
+    };
+});
+
+let total = 0;
+let operator;
+let previousNumber;
+let currentNumber;
+const calc = (operator, previousNumber, currentNumber);
+
+addButton.addEventListener('click', function(){
+    operator = 'add';
+    previousNumber = Number(screen.value);
+    screen.value = '';
+});
+
+equalsButton.addEventListener('click', () => (screen.value = total));
 
 function add(a, b){
     let sum = a + b;
