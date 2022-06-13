@@ -31,7 +31,7 @@ screen.value = 0;
 clearButton.addEventListener('click', function(){
     screen.value = 0;
     total = 0;
-    operator = '';
+    previousOperator = '';
     currentNumber = 0;
     previousNumber = 0;
 });
@@ -100,37 +100,67 @@ nineButton.addEventListener('click', () => {
 
 let total = 0;
 let operator = '';
-let previousNumber;
+let previousNumber = 0;
 let currentNumber = 0;
+let previousOperator = '';
+let currentOperator = '';
 
 addButton.addEventListener('click', () => {
-    if(operator === '') {
+    if(previousOperator === '' && previousKeyType !='equals' && previousKeyType != 'sign') {
     previousNumber = Number(screen.value);
-    operator = 'add';
-    }else if(previousKeyType != 'sign' && previousKeyType != 'equals' && operator != ''){
+    previousOperator = 'add';
+    }else if(previousOperator != '' && previousKeyType != 'equals' && previousKeyType != 'sign'){
         currentNumber = Number(screen.value);
-        operate(operator, previousNumber, currentNumber);
+        operate(previousOperator, previousNumber, currentNumber);
+        previousOperator = 'add';
     }else{
-        return;
+        previousOperator = 'add';
     };
 });
 
 subtractButton.addEventListener('click', () => {
-    if(operator === '') {
+    if(previousOperator === '' && previousKeyType != 'equals' && previousKeyType != 'sign') {
     previousNumber = Number(screen.value);
-    operator = 'subtract';
-    }else if(previousKeyType != 'sign' && previousKeyType != 'equals' && operator != ''){
+    previousOperator = 'subtract';
+    }else if(previousOperator != '' && previousKeyType != 'equals' && previousKeyType != 'sign'){
         currentNumber = Number(screen.value);
-        operate(operator, previousNumber, currentNumber);
+        operate(previousOperator, previousNumber, currentNumber);
+        previousOperator = 'subtract';
     }else{
-        return;
+        previousOperator = 'subtract';
+    };
+});
+
+multiplyButton.addEventListener('click', () => {
+    if(previousOperator === '' && previousKeyType !='equals' && previousKeyType != 'sign') {
+    previousNumber = Number(screen.value);
+    previousOperator = 'multiply';
+    }else if(previousOperator != '' && previousKeyType != 'equals' && previousKeyType != 'sign'){
+        currentNumber = Number(screen.value);
+        operate(previousOperator, previousNumber, currentNumber);
+        previousOperator = 'multiply';
+    }else{
+        previousOperator = 'multiply';
+    };
+});
+
+divideButton.addEventListener('click', () => {
+    if(previousOperator === '' && previousKeyType !='equals' && previousKeyType != 'sign') {
+    previousNumber = Number(screen.value);
+    previousOperator = 'divide';
+    }else if(previousOperator != '' && previousKeyType != 'equals' && previousKeyType != 'sign'){
+        currentNumber = Number(screen.value);
+        operate(previousOperator, previousNumber, currentNumber);
+        previousOperator = 'divide';
+    }else{
+        previousOperator = 'divide';
     };
 });
 
 equalsButton.addEventListener('click', () => {
     if(previousKeyType != 'equals' && previousKeyType === 'number'){
         currentNumber = Number(screen.value);
-        operate(operator, previousNumber, currentNumber);
+        operate(previousOperator, previousNumber, currentNumber);
     }else {
         return;
     };
@@ -176,5 +206,4 @@ function operate(operator, firstNumber, secondNumber){
     screen.value = total;
     previousNumber = total;
     currentNumber = 0;
-    operator = '';
 };
